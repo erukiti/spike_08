@@ -12,12 +12,14 @@ API仕様を Json-HyperSchema (YAML表記)で書いて、APIドキュメント�
 
 ```sh
 $ gem install prmd
+$ gem install jdoc
 ```
 
 ドキュメント生成
 ----------------
 
 ```sh
-$ prmd combine schemata/ | prmd doc > document.md
+$ prmd combine schemata/ > schema.json
+$ jdoc schema.json > document.md
 ```
 

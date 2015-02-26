@@ -10,7 +10,6 @@ definitions:
     description: その人のユニークな識別子
     example: 01234567-89ab-cdef-0123-456789abcdef
     format: uuid
-    pattern: ^[0-9a-z]{8}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{12}$
     type: string
 
   firstname:
