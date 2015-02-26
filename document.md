@@ -1,12 +1,13 @@
 ## Person resource
 人間を表すリソース。ほげほげふがふが。
 
+
 ### Attributes
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **id** | *uuid* | その人のユニークな識別子<br/> **pattern:** <code>^[0-9a-z]{8}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{12}$</code> | `"01234567-89ab-cdef-0123-456789abcdef"` |
-| **firstname** | *String* | その人のfirstname | `"hoge"` |
-| **lastname** | *String* | その人のlastname | `"fuga"` |
+| **firstname** | *regex* | その人のfirstname | `"hoge"` |
+| **lastname** | *regex* | その人のlastname | `"fuga"` |
 | **created_at** | *date-time* | when person was created | `"2012-01-01T12:00:00Z"` |
 | **updated_at** | *date-time* | when person was updated | `"2012-01-01T12:00:00Z"` |
 ### Person resource Create
@@ -19,8 +20,8 @@ POST /persons
 #### Required Parameters
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **firstname** | *String* | その人のfirstname | `"hoge"` |
-| **lastname** | *String* | その人のlastname | `"fuga"` |
+| **firstname** | *regex* | その人のfirstname | `"hoge"` |
+| **lastname** | *regex* | その人のlastname | `"fuga"` |
 
 
 
@@ -55,13 +56,13 @@ HTTP/1.1 201 Created
 既存の person を削除する
 
 ```
-DELETE /persons/{person_id}
+DELETE /persons/:id
 ```
 
 
 #### Curl Example
 ```bash
-$ curl -n -X DELETE /persons/$PERSON_ID \
+$ curl -n -X DELETE /persons/:id \
   -H "Content-Type: application/json" \
 
 ```
@@ -85,13 +86,13 @@ HTTP/1.1 200 OK
 既存の person を取得する
 
 ```
-GET /persons/{person_id}
+GET /persons/:id
 ```
 
 
 #### Curl Example
 ```bash
-$ curl -n -X GET /persons/$PERSON_ID
+$ curl -n -X GET /persons/:id
 
 ```
 
@@ -145,19 +146,19 @@ HTTP/1.1 200 OK
 person の情報を更新する
 
 ```
-PUT /persons/{person_id}
+PUT /persons/:id
 ```
 
 #### Optional Parameters
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **firstname** | *String* | その人のfirstname | `"hoge"` |
-| **lastname** | *String* | その人のlastname | `"fuga"` |
+| **firstname** | *regex* | その人のfirstname | `"hoge"` |
+| **lastname** | *regex* | その人のlastname | `"fuga"` |
 
 
 #### Curl Example
 ```bash
-$ curl -n -X PUT /persons/$PERSON_ID \
+$ curl -n -X PUT /persons/:id \
   -H "Content-Type: application/json" \
  \
   -d '{

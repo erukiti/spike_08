@@ -1,12 +1,11 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-id: schemata/person
+id: /schemata/person
 title: Person resource
-description: 人間を表すリソース。ほげほげふがふが。
-definitions:
-  identity:
-    "$ref": "/schemata/person#/definitions/id"
+description: |
+  人間を表すリソース。ほげほげふがふが。
 
+definitions:
   id:
     description: その人のユニークな識別子
     example: 01234567-89ab-cdef-0123-456789abcdef
@@ -17,13 +16,13 @@ definitions:
   firstname:
     description: その人のfirstname
     example: hoge
-    format: String
+    format: regex
     type: string
 
   lastname:
     description: その人のlastname
     example: fuga
-    format: String
+    format: regex
     type: string
 
   created_at:
@@ -39,6 +38,7 @@ definitions:
     format: date-time
     type:
     - string
+
 properties:
   id:
     "$ref": "/schemata/person#/definitions/id"
@@ -50,7 +50,9 @@ properties:
     "$ref": "/schemata/person#/definitions/created_at"
   updated_at:
     "$ref": "/schemata/person#/definitions/updated_at"
+
 type: object
+
 links:
 - description: person を作成する
   href: "/persons"
@@ -68,12 +70,12 @@ links:
     type: object
   title: Create
 - description: 既存の person を削除する
-  href: "/persons/{(%2Fschemata%2Fperson%23%2Fdefinitions%2Fidentity)}"
+  href: "/persons/:id"
   method: DELETE
   rel: destroy
   title: Delete
 - description: 既存の person を取得する
-  href: "/persons/{(%2Fschemata%2Fperson%23%2Fdefinitions%2Fidentity)}"
+  href: "/persons/:id"
   method: GET
   rel: self
   title: Info
@@ -83,7 +85,7 @@ links:
   rel: instances
   title: List
 - description: person の情報を更新する
-  href: "/persons/{(%2Fschemata%2Fperson%23%2Fdefinitions%2Fidentity)}"
+  href: "/persons/:id"
   method: PUT
   rel: update
   schema:

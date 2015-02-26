@@ -4,11 +4,8 @@
     "person": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Person resource",
-      "description": "人間を表すリソース。ほげほげふがふが。",
+      "description": "人間を表すリソース。ほげほげふがふが。\n",
       "definitions": {
-        "identity": {
-          "$ref": "#/definitions/person/definitions/id"
-        },
         "id": {
           "description": "その人のユニークな識別子",
           "example": "01234567-89ab-cdef-0123-456789abcdef",
@@ -21,7 +18,7 @@
         "firstname": {
           "description": "その人のfirstname",
           "example": "hoge",
-          "format": "String",
+          "format": "regex",
           "type": [
             "string"
           ]
@@ -29,7 +26,7 @@
         "lastname": {
           "description": "その人のlastname",
           "example": "fuga",
-          "format": "String",
+          "format": "regex",
           "type": [
             "string"
           ]
@@ -98,14 +95,14 @@
         },
         {
           "description": "既存の person を削除する",
-          "href": "/persons/{(%23%2Fdefinitions%2Fperson%2Fdefinitions%2Fidentity)}",
+          "href": "/persons/:id",
           "method": "DELETE",
           "rel": "destroy",
           "title": "Delete"
         },
         {
           "description": "既存の person を取得する",
-          "href": "/persons/{(%23%2Fdefinitions%2Fperson%2Fdefinitions%2Fidentity)}",
+          "href": "/persons/:id",
           "method": "GET",
           "rel": "self",
           "title": "Info"
@@ -119,7 +116,7 @@
         },
         {
           "description": "person の情報を更新する",
-          "href": "/persons/{(%23%2Fdefinitions%2Fperson%2Fdefinitions%2Fidentity)}",
+          "href": "/persons/:id",
           "method": "PUT",
           "rel": "update",
           "schema": {
